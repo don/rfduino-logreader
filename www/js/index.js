@@ -75,10 +75,7 @@ var app = {
         rfduino.connect(uuid, onConnect, app.onError);
     },
     onData: function(data) {
-        console.log(data);
-
         var s = arrayBufferToString(data);
-        console.log(s);
         logData.innerHTML = logData.innerHTML += s;
         // how do we know when the file is finished?
     },
@@ -94,6 +91,7 @@ var app = {
         detailPage.hidden = true;
     },
     showDetailPage: function() {
+        logData.innerHTML = '';
         mainPage.hidden = true;
         detailPage.hidden = false;
     },
