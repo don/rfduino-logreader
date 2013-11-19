@@ -9,19 +9,19 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
         
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>RFduino Temp</title>
+        <title>RFduino Log Reader</title>
     </head>
     <body>
         <div class="app">
-            <h1>RFduino Temp</h1>
+            <h1>RFduino Log Reader</h1>
             <div id="mainPage">
                 <ul id="deviceList">                    
                 </ul>
                 <button id="refreshButton">Refresh</button>
             </div>
             <div id="detailPage">
-                <span id="tempCelsius"></span>&nbsp;&deg;C<br/>
-                <span id="tempFahrenheit"></span>&nbsp;&deg;F<br/>
+                <div id="logData"></div>
+                <button id="readLogButton">Read Log</button>
                 <button id="closeButton">Close</button>
             </div>            
         </div>
