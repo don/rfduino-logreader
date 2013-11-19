@@ -75,13 +75,11 @@ var app = {
         rfduino.connect(uuid, onConnect, app.onError);
     },
     onData: function(data) {
-        // convert to string and display in UI
-        console.logData(data);
-        
+        console.log(data);
+
         var s = arrayBufferToString(data);
         console.log(s);
         logData.innerHTML = logData.innerHTML += s;
-        
         // how do we know when the file is finished?
     },
     disconnect: function() {
