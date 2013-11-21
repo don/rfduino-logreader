@@ -29,13 +29,15 @@ var bytesToString = function (bytes) {
     }
     return bytesAsString;
 };
-        
+
 var arrayBufferToString = function (ab) {
     var b = new Uint8Array(ab);
     return bytesToString(b);
 };
 
 var app = {
+    logData: '',
+    start: null,
     initialize: function() {
         this.bindEvents();
         detailPage.hidden = true;
@@ -76,15 +78,23 @@ var app = {
     },
     onData: function(data) {
         var s = arrayBufferToString(data);
-        logData.innerHTML = logData.innerHTML += s;
-        // how do we know when the file is finished?
+        if (s.match(/^QED/)) {
+            logData.innerHTML = app.logData;
+            statusDiv.innerHTML = 'Complete. Received ' + app.logData.length + ' bytes';
+        } else {
+            app.logData += s;
+            statusDiv.innerHTML = app.logData.length;
+        }
     },
     disconnect: function() {
         rfduino.disconnect(app.showMainPage, app.onError);
     },
     readLog: function() {
-        var ok = function() { console.log('Sent read log command'); };
-        rfduino.write('Go', ok, app.onError);
+        app.logData = '';
+        logData.innerHTML = '';
+        statusDiv.innerHTML = 'Requesting Log.';
+        var ok = function() { statusDiv.innerHTML = 'Requested Received.'; };
+        rfduino.write('Send', ok, app.onError);
     },
     showMainPage: function() {
         mainPage.hidden = false;
@@ -92,6 +102,7 @@ var app = {
     },
     showDetailPage: function() {
         logData.innerHTML = '';
+        statusDiv.innerHTML = '';
         mainPage.hidden = true;
         detailPage.hidden = false;
     },
