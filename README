@@ -1,0 +1,18 @@
+Proof of concept sketch for uploading files from RFduino over Bluetooth Low Energy.
+ 
+Note that this is an abuse of Bluetooth low energy and probably a bad idea.
+
+# RFduino
+
+Load RFduinoFileUploader.ino onto your RFduino.
+Put a log file, "sample.log" onto the SDcard. Start with a small file (less than 10 kb.)
+
+# Phone
+
+Works on iOS or Android with Cordova (PhoneGap)
+
+    $ cordova platform add ios
+    $ cordova plugin add com.megster.cordova.rfduino
+    $ open platforms/ios/LogReader.xcodeproj
+    
+Use Xcode to deploy the code to your iPhone.
